@@ -13,6 +13,7 @@
   ],
   "dependencies": {
     "purescript-console": "^0.1.0",
-    "purescript-express": "master"
+    "purescript-express": "master",
+    "purescript-test-unit": "~2.0.0"
   }
 }

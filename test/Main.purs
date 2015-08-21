@@ -1,6 +1,8 @@
 module Test.Main where
 
+import Test.Unit
+import ReciterTest
 import Control.Monad.Eff.Console
 
-main = do
-  log "You should add some tests."
+main = runTest do
+ testReciter

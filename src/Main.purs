@@ -6,10 +6,13 @@ import Control.Monad.Eff.Console (log)
 import Control.Monad.Eff.Exception
 import Data.Foreign.EasyFFI
 import Data.Maybe
+import Data.String (drop, take, toUpper, length, split)
 
 import Node.Express.Types
 import Node.Express.App
 import Node.Express.Handler
+
+import Reciter (translateWord)
 
 
 type Phoneme = String
@@ -17,7 +20,11 @@ type PhonemeWord = Array Phoneme
 type PhonemeLine = Array PhonemeWord
 
 textToPhonemes :: String -> Array PhonemeLine
-textToPhonemes text = [[[text]]]
+textToPhonemes text =
+  map  (\line -> map (\word-> [(translateWord word)]) line) linesOfWords
+  where
+    linesOfWords :: Array (Array String)
+    linesOfWords = map (split " ") (split "\n" text)
 
 
 handler :: Handler
