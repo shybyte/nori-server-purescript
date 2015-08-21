@@ -1,0 +1,17 @@
+{
+  "name": "nori-server-purescript",
+  "version": "0.0.0",
+  "description": "Nori loves purescript",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Marco Stahl",
+  "license": "AGPL",
+  "dependencies": {
+    "express": "~4.13.3"
+  }
+}
