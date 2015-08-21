@@ -407,3 +407,11 @@ translationTable =
     [" (Z) ","ZIY4"],
     ["(Z)","Z"]
   ]
+
+arpabetPhonemes =
+  [
+    "SIL", "NG", "TH", "SH", "DH", "ZH", "CH", "IH", "EH",
+    "AE", "AH", "OH", "UH", "AX", "IY", "ER", "AA", "AO",
+    "UW", "EY", "AY", "OY", "AW", "OW", "IA", "EA", "UA", "LL", "WH", "IX", "EL", "RX",
+    "H", "P", "T", "K", "B", "D", "G", "M", "N", "F", "S", "V", "Z", "L", "R", "W", "Q", "Y", "J", " "
+  ]

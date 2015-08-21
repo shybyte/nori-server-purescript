@@ -12,19 +12,22 @@ import Node.Express.Types
 import Node.Express.App
 import Node.Express.Handler
 
-import Reciter (translateWord)
+import Reciter (translateWord, splitToArpabet)
 
 
 type Phoneme = String
 type PhonemeWord = Array Phoneme
 type PhonemeLine = Array PhonemeWord
 
+
+
 textToPhonemes :: String -> Array PhonemeLine
 textToPhonemes text =
-  map  (\line -> map (\word-> [(translateWord word)]) line) linesOfWords
+  map  (\line -> map mapWord line) linesOfWords
   where
     linesOfWords :: Array (Array String)
     linesOfWords = map (split " ") (split "\n" text)
+    mapWord word = splitToArpabet $ translateWord word
 
 
 handler :: Handler

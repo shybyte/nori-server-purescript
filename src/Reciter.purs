@@ -39,7 +39,7 @@ arrayToRule ruleAsArray =
     headPattern: getPatternPart 1,
     body: getPatternPart 2,
     tailPattern: getPatternPart 3,
-    replacement: replaceS "/" "" (unsafeIndex ruleAsArray 1)
+    replacement: replaceS "/H" "H" (unsafeIndex ruleAsArray 1)
   }
   where
     patternString = unsafeIndex ruleAsArray 0
@@ -76,7 +76,7 @@ findMatchingRule sHead sTail = head matchingRules
 
 isMatching :: String -> String -> Rule -> Boolean
 isMatching sHead bodyAndTail rule =
-  startsWith rule.body bodyAndTail
+  startsWith bodyAndTail rule.body
   && test headRegex sHead
   && test tailRegex sTail
   where
@@ -86,7 +86,7 @@ isMatching sHead bodyAndTail rule =
 
 
 startsWith :: String -> String -> Boolean
-startsWith needle s =
+startsWith s needle =
   needle == take (length needle) s
 
 
@@ -102,4 +102,13 @@ toRegexString pattern =
     replaceConsonantInfluencingU = replaceS "@" "([TSRDLZNJ]|TH|CH|SH)"
     replaceSibilant = replaceS "&" "([SCGZXJ]|CH|SH)"
     replaceSuffix = replaceS "%" "(ER|E|ES|ED|ING|ELY)"
+
+
+splitToArpabet :: String -> Array String
+splitToArpabet arpabetWord =
+  case matchingArpabetPhoneme of
+    Just arpabetPhoneme -> [arpabetPhoneme] ++ splitToArpabet(drop (length arpabetPhoneme) arpabetWord)
+    Nothing -> if (length arpabetWord < 2) then [] else splitToArpabet (drop 1 arpabetWord)
+  where
+    matchingArpabetPhoneme = head $ filter (startsWith arpabetWord) arpabetPhonemes
 
