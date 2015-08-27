@@ -1,2 +1,8 @@
+Doing:
+
 TODO:
+  * Use big dict
   * Reciter should produce only Arpabet Phonemes (e.g. NG <-> HNX)
+
+Done:
+  * Add CORS

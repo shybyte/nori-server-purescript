@@ -40,6 +40,8 @@ textToPhonemes cmuDict text =
 handler :: CmuDict -> Handler
 handler cmuDict = do
   textParam <- getRouteParam "text"
+  setResponseHeader "Access-Control-Allow-Origin" "*"
+  setResponseHeader "Access-Control-Allow-Headers" "Origin, X-Requested-With, Content-Type, Accept"
   case textParam of
       Nothing -> nextThrow $ error "Text is required"
       Just text -> do
