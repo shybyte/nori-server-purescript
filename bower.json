@@ -17,7 +17,13 @@
     "purescript-test-unit": "~2.0.0",
     "purescript-maps": "~0.5.0",
     "purescript-tuples": "~0.4.0",
-    "purescript-lists": "~0.7.2"
+    "purescript-lists": "~0.7.2",
+    "purescript-foldable-traversable": "~0.4.0",
+    "purescript-parsing": "0.5.1"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "resolutions": {
+    "purescript-strings": "^0.7.0",
+    "purescript-parsing": "0.5.1"
+  }
 }

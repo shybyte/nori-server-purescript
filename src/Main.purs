@@ -29,14 +29,12 @@ textToPhonemes cmuDict text =
   map  (\line -> map mapWord line) linesOfWords
   where
     linesOfWords :: Array (Array String)
-    linesOfWords = map (split " ") (split "\n" text)
+    linesOfWords = map (split " ") (split "\n" (toUpper text))
     mapWordFallBack word = splitToArpabet $ translateWord word
     mapWord word =
       case (lookup word cmuDict) of
         Just phonmes -> phonmes
         Nothing -> mapWordFallBack word
-
-
 
 
 handler :: CmuDict -> Handler
@@ -51,10 +49,9 @@ handler cmuDict = do
 app :: CmuDict -> App
 app cmuDict = get "/phonemes/:text" (handler cmuDict)
 
---main :: forall e. Eff (express :: Express, console :: Control.Monad.Eff.Console.CONSOLE, fs:: FS | e) Unit
+main :: forall e. Eff (express :: Express, console :: Control.Monad.Eff.Console.CONSOLE, fs:: FS | e) Unit
 main = do
-    cmuDict <- loadDict
-    log "Test"
---    port <- unsafeForeignFunction [""] "process.env.PORT || 3000"
---    listenHttp (app cmuDict) port \_ ->
---        log $ "Listening on " ++ show port
+   cmuDict <- loadDict
+   port <- unsafeForeignFunction [""] "process.env.PORT || 3000"
+   listenHttp (app cmuDict) port \_ ->
+       log $ "Listening on " ++ show port
